@@ -35,6 +35,7 @@ function titleClickHandler(event){
   console.log(targetArticle);
 
   /* add class 'active' to the correct article */
+  targetArticle.classList.add('active');
 
 }
 
