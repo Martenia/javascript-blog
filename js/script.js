@@ -15,7 +15,7 @@ function titleClickHandler(event){
 
   /* [DONE] add class 'active' to the clicked link */
   const clickedElement = this;
-  console.log('clickedElement:', clickedElement);
+  // console.log('clickedElement:', clickedElement);
   
   clickedElement.classList.add('active');
 
@@ -28,11 +28,11 @@ function titleClickHandler(event){
 
   /* get 'href' attribute from the clicked link */
   const articleSelector = clickedElement.getAttribute('href');
-  console.log(articleSelector);
+  // console.log(articleSelector);
 
   /* find the correct article using the selector (value of 'href' attribute) */
   const targetArticle = document.querySelector(articleSelector);
-  console.log(targetArticle);
+  // console.log(targetArticle);
 
   /* add class 'active' to the correct article */
   targetArticle.classList.add('active');
@@ -41,7 +41,8 @@ function titleClickHandler(event){
 
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles';
+  optTitleListSelector = '.titles',
+  optArticleTagsSelector = '.post-tags .list';
 
 function generateTitleLinks(){
   
@@ -66,7 +67,7 @@ function generateTitleLinks(){
 
     /* insert link into titleList */
     html = html + linkHTML;
-    console.log(html);
+    // console.log(html);
   }
 
   titleList.innerHTML = html;
@@ -75,8 +76,37 @@ generateTitleLinks();
 
 
 const links = document.querySelectorAll('.titles a');
-console.log(links);
+// console.log(links);
 
 for(let link of links){
   link.addEventListener('click', titleClickHandler);
 }
+
+function generateTags(){
+  /* find all articles */
+  const articles = document.querySelectorAll(optArticleSelector);
+  /* START LOOP: for every article: */
+  for(let article of articles){
+    /* find tags wrapper */
+    const tagsWrapper = article.querySelector(optArticleTagsSelector);
+    /* make html variable with empty string */
+    let html = '';
+    /* get tags from data-tags attribute */
+    const articleTags = article.getAttribute('data-tags');
+    console.log(articleTags);
+    /* split tags into array */
+    
+    /* START LOOP: for each tag */
+
+      /* generate HTML of the link */
+
+      /* add generated code to html variable */
+
+    /* END LOOP: for each tag */
+
+    /* insert HTML of all the links into the tags wrapper */
+  }
+  /* END LOOP: for every article: */
+}
+
+generateTags();
