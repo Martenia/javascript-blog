@@ -102,12 +102,14 @@ function generateTags(){
     for(let tag of articleTagsArray) {
       console.log(tag);
       /* generate HTML of the link */
-      
+      const linkTag = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
       /* add generated code to html variable */
+      html = html + linkTag + ' ';
     }
     /* END LOOP: for each tag */
 
     /* insert HTML of all the links into the tags wrapper */
+    tagsWrapper.innerHTML = html;
   }
   /* END LOOP: for every article: */
 }
