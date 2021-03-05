@@ -42,16 +42,19 @@ function titleClickHandler(event){
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list';
+  optArticleTagsSelector = '.post-tags .list',
+  optArticleAuthorSelector = '.post .post-author';
 
-function generateTitleLinks(){
+function generateTitleLinks(customSelector = ''){
   
   /* remove contents of titleList */
   const titleList = document.querySelector(optTitleListSelector);
   titleList.innerHTML = '';
 
   /* for each article */
-  const articles = document.querySelectorAll(optArticleSelector);
+  const articles = document.querySelectorAll(optArticleSelector + customSelector);
+  console.log(customSelector);
+  console.log(optArticleSelector + customSelector);
 
   let html = '';
   for(let article of articles){
@@ -123,7 +126,7 @@ function tagClickHandler(event){
   /* [DONE] prevent default action for this event */
   event.preventDefault();
   
-   /* [DONE] make new constant named "clickedElement" and give it the value of "this" */
+  /* [DONE] make new constant named "clickedElement" and give it the value of "this" */
   const clickedElement = this;
   // console.log(clickedElement);
   
@@ -175,3 +178,32 @@ function addClickListenersToTags(){
 }
 
 addClickListenersToTags();
+
+
+
+
+function generateAuthors(){
+  /* find all articles */
+  const articles = document.querySelectorAll(optArticleSelector);
+  /* START LOOP: for every article: */
+  for (let article of articles){
+    /* find author wrapper */
+    const authorWrapper = article.querySelector(optArticleAuthorSelector);
+    console.log(authorWrapper);
+    /* make html variable with empty string */
+    let html = '';
+    /* get tags from data-author attribute */
+    const authorTags = article.getAttribute('data-author');
+    console.log(authorTags);
+    /* convert data-author to lowercase and delete white space */
+    const authorLink = authorTags.split(' ').join('').toLowerCase();
+    console.log(authorLink);
+    /* generate HTML of the link */
+    const authorTag = '<a href="#author-' + authorLink + '">' + authorTags + '</a>';
+    /* add generated code to html variable */
+    html = html + authorTag;
+    /* insert HTML of all the links into the tags wrapper */
+    authorWrapper.innerHTML = html;
+  }
+}
+generateAuthors();
