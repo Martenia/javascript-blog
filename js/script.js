@@ -53,9 +53,9 @@ function generateTitleLinks(customSelector = ''){
 
   /* for each article */
   const articles = document.querySelectorAll(optArticleSelector + customSelector);
-  console.log(articles);
-  console.log(customSelector);
-  console.log(optArticleSelector + customSelector);
+  // console.log(articles);
+  // console.log(customSelector);
+  // console.log(optArticleSelector + customSelector);
 
   let html = '';
   for(let article of articles){
@@ -87,9 +87,11 @@ for(let link of links){
 }
 
 function generateTags(){
+  /* [NEW] create a new variable allTags with an empty array */
+  let allTags = [];
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
-  console.log(articles);
+  // console.log(articles);
   /* START LOOP: for every article: */
   for(let article of articles){
     /* find tags wrapper */
@@ -111,12 +113,23 @@ function generateTags(){
       // console.log(linkTag);
       /* add generated code to html variable */
       html = html + linkTag + ' ';
+      /* [NEW] check if this link is NOT already in allTags */
+      if(allTags.indexOf(linkTag) == -1){
+        /* [NEW] add generated code to allTags array */
+        allTags.push(linkTag);
+      }
     /* END LOOP: for each tag */
     }
     /* insert HTML of all the links into the tags wrapper */
     tagsWrapper.innerHTML = html;
+    /* END LOOP: for every article: */
   }
-  /* END LOOP: for every article: */
+  /* [NEW] find list of tags in right column */
+  const tagList = document.querySelector('.tags');
+  console.log(tagList);
+
+  /* [NEW] add html from allTags to tagList */
+  tagList.innerHTML = allTags.join(' ');
 }
 generateTags();
 
@@ -129,7 +142,7 @@ function tagClickHandler(event){
   
   /* [DONE] make new constant named "clickedElement" and give it the value of "this" */
   const clickedElement = this;
-  console.log(clickedElement);
+  // console.log(clickedElement);
   
   /* [DONE] make a new constant "href" and read the attribute "href" of the clicked element */
   const href = clickedElement.getAttribute('href');
@@ -152,7 +165,7 @@ function tagClickHandler(event){
 
   /* [DONE] find all tag links with "href" attribute equal to the "href" constant */
   const tagLinks = document.querySelectorAll('a[href="' + href + '"]');
-  console.log(tagLinks);
+  // console.log(tagLinks);
 
   /* [DONE] START LOOP: for each found tag link */
   for (let tagLink of tagLinks){
