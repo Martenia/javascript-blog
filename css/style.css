@@ -128,7 +128,7 @@ body {
   text-decoration: none;
 }
 
-.tag-size-5 {
+.tag-size-5, .tag-size-6 {
   font-size: 31px;
   text-decoration: none;
 }
