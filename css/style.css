@@ -123,12 +123,12 @@ body {
   text-decoration: none;
 }
 
-.tag-size-4 {
+.tag-size-4, .tag-size-6 {
   font-size: 27px;
   text-decoration: none;
 }
 
-.tag-size-5, .tag-size-6 {
+.tag-size-5 {
   font-size: 31px;
   text-decoration: none;
 }
